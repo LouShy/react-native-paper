@@ -23,6 +23,9 @@ import { useInternalTheme } from '../../core/theming';
 import type { MD3Elevation, ThemeProp } from '../../types';
 import Surface from '../Surface';
 
+const BASE_V3_SPACING_WIDTH = 36;
+const ICON_PADDING = 8;
+
 export type Props = Omit<
   Partial<React.ComponentPropsWithRef<typeof View>>,
   'style'
@@ -64,6 +67,10 @@ export type Props = Omit<
    */
   theme?: ThemeProp;
   style?: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
+  /**
+   * @optional
+   */
+  iconPadding?: number;
 };
 
 /**
@@ -160,6 +167,7 @@ const Appbar = ({
   elevated,
   safeAreaInsets,
   theme: themeOverrides,
+  iconPadding = ICON_PADDING,
   ...rest
 }: Props) => {
   const theme = useInternalTheme(themeOverrides);
@@ -237,7 +245,11 @@ const Appbar = ({
     [children]
   );
 
-  const spacingStyle = isV3 ? styles.v3Spacing : styles.spacing;
+  const v3Spacing = {
+    width: BASE_V3_SPACING_WIDTH + 2 * iconPadding,
+  };
+
+  const spacingStyle = isV3 ? v3Spacing : styles.spacing;
 
   const insets = {
     paddingBottom: safeAreaInsets?.bottom,
@@ -334,9 +346,9 @@ const styles = StyleSheet.create({
   spacing: {
     width: 48,
   },
-  v3Spacing: {
-    width: 52,
-  },
+  // v3Spacing: {
+  //   width: 52,
+  // },
   controlsRow: {
     flex: 1,
     flexDirection: 'row',

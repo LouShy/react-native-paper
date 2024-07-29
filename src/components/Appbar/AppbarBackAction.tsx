@@ -38,6 +38,10 @@ export type Props = $Omit<
   onPress?: (e: GestureResponderEvent) => void;
   style?: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
   ref?: React.RefObject<View>;
+  /**
+   * @optional
+   */
+  iconPadding?: number;
 };
 
 /**

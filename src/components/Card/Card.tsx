@@ -7,6 +7,7 @@ import {
   Pressable,
   View,
   ViewStyle,
+  PressableProps,
 } from 'react-native';
 
 import useLatestCallback from 'use-latest-callback';
@@ -89,6 +90,7 @@ export type Props = $Omit<React.ComponentProps<typeof Surface>, 'mode'> & {
    */
   contentStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
+  pressableStyle?: PressableProps['style'];
   /**
    * @optional
    */
@@ -143,6 +145,7 @@ const CardComponent = (
     children,
     style,
     contentStyle,
+    pressableStyle,
     theme: themeOverrides,
     testID = 'card',
     accessible,
@@ -320,6 +323,7 @@ const CardComponent = (
           onPress={onPress}
           onPressIn={handlePressIn}
           onPressOut={handlePressOut}
+          style={pressableStyle}
         >
           {content}
         </Pressable>

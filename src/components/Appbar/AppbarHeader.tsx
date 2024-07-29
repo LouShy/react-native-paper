@@ -58,6 +58,10 @@ export type Props = React.ComponentProps<typeof Appbar> & {
    */
   theme?: ThemeProp;
   style?: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
+  /**
+   * @optional
+   */
+  iconPadding?: number;
 };
 
 /**
